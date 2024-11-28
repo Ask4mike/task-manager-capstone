@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import Lottie from "../assets/images/Lottie-Task.gif";
 import Textbox from "../components/Textbox";
 import Button from "../components/Button";
+import { useSelector } from "react-redux";
 
 export default function Login() {
-  const user = "";
+  const { user } = useSelector((state) => state.auth);
   const {
     register,
     handleSubmit,
@@ -16,7 +17,11 @@ export default function Login() {
   const submitHandler = async (data) => {
     console.log("form submitted successfully", data);
   };
+
+  console.log(user);
+
   const navigate = useNavigate();
+
   useEffect(() => {
     user && navigate("/dashboard");
   }, [navigate, user]);
@@ -85,9 +90,9 @@ export default function Login() {
                 </span>
 
                 <Button
-                 type="Login"
-                 label="Login"
-                 className="w-full h-full font-bold bg-blue-700 text-white rounded-full hover:opacity-90"
+                  type="Login"
+                  label="Login"
+                  className="w-full h-full font-bold bg-blue-700 text-white rounded-full hover:opacity-90"
                 />
               </div>
             </div>
